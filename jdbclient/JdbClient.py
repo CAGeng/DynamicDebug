@@ -1,5 +1,7 @@
 import pexpect
 import re
+from func_timeout import func_set_timeout
+import func_timeout
 
 class JdbProcess(object):
     def __init__(self, port):
@@ -77,7 +79,8 @@ class JdbProcess(object):
             
         self.printLog("---------- args name ----------------------")
         self.printLog(self.arg_vals)
-        
+    
+    @func_set_timeout(5)   
     def check_vals(self):
         self.tainted_vals = []
         for val in self.arg_vals:

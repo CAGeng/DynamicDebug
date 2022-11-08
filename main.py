@@ -24,7 +24,8 @@ def debug():
     
     debug_lock.acquire()
     output_processor = OutputProcessor.MyProcessor("")
-    output_processor.parse_breakpoint_from_file_taint_alloc_size("/mnt/f/code/webdetect/output/ES-output/output/taint-alloc-size.txt")
+    # output_processor.parse_breakpoint_from_file_taint_alloc_size("/mnt/f/code/webdetect/output/ES-output/output/taint-alloc-size.txt")
+    output_processor.parse_breakpoint_from_file_system_out("/mnt/f/code/webdetect/output/out12.txt")
     output_processor.add_breakpoints(client)
     debug_lock.release()
     
@@ -36,9 +37,13 @@ def debug():
         except func_timeout.exceptions.FunctionTimedOut as e:
             print("debug waiting timeout, so we think it has finished")
             break
+        
         debug_lock.acquire()
         client.parse_raw()
-        client.check_vals()
+        try:
+            client.check_vals()
+        except func_timeout.exceptions.FunctionTimedOut as e:
+            print("taint field check time out, skip")
         client.finish_this_turn()
         debug_lock.release()
         hit_breakpoints.append(client.extract_breakpoint_method)
@@ -48,7 +53,10 @@ def debug():
     finish = True
     with open("./output/hit_breakpoints.txt", "w") as f:
         for b in hit_breakpoints:
-            f.write(b + "  :  [request id]" + str(hit_map_request[b]) + "\n")
+            if hit_map_request[b] == None:
+                 f.write(b + "\n")
+            else:
+                f.write(b + "  :  [request id]" + str(hit_map_request[b]) + "\n")
 
 def send_my_request():
     global finish

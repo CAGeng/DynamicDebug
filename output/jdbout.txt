@@ -1,16 +1,17 @@
 >>>>>>>> breakpoint hit
 
 ---------- breakpoint at method ----------------------
-org.elasticsearch.common.compress.CompressorFactory.compressor()
+org.elasticsearch.cluster.ClusterState)
+elasticsearch[d8fe28f37877][get][T#3][1]
 ---------- args name ----------------------
-['bytes']
+[]
 ---------- tainted args ----------------------
 []
-clear this breakpoint after hit
+cannot find this method in breakpoint list!?
 >>>>>>>> breakpoint hit
 
 ---------- breakpoint at method ----------------------
-org.apache.lucene.store.DataInput.readString()
+org.elasticsearch.index.get.ShardGetService.innerGet()
 ---------- args name ----------------------
 []
 ---------- tainted args ----------------------
@@ -20,36 +21,138 @@ clear this breakpoint after hit
 >>>>>>>> breakpoint hit
 
 ---------- breakpoint at method ----------------------
-org.elasticsearch.common.xcontent.XContentHelper.xContentType()
+org.elasticsearch.search.SearchService.executeQueryPhase()
 ---------- args name ----------------------
-['bytes']
+['request', 'task']
+---------- tainted args ----------------------
+['task']
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.elasticsearch.search.SearchService.createAndPutContext()
+---------- args name ----------------------
+['request']
 ---------- tainted args ----------------------
 []
 clear this breakpoint after hit
 >>>>>>>> breakpoint hit
 
 ---------- breakpoint at method ----------------------
-org.elasticsearch.index.engine.InternalEngine.getVersionFromMap()
+com.carrotsearch.hppc.ObjectObjectHashMap.allocateBuffers()
 ---------- args name ----------------------
-['id']
+['arraySize']
 ---------- tainted args ----------------------
 []
 clear this breakpoint after hit
 >>>>>>>> breakpoint hit
 
 ---------- breakpoint at method ----------------------
-org.elasticsearch.index.engine.LiveVersionMap.getUnderLock()
+com.carrotsearch.hppc.RandomizedHashOrderMixer.newKeyMixer()
 ---------- args name ----------------------
-['uid']
+['newContainerBufferSize']
 ---------- tainted args ----------------------
 []
 clear this breakpoint after hit
 >>>>>>>> breakpoint hit
 
 ---------- breakpoint at method ----------------------
-org.elasticsearch.index.engine.LiveVersionMap.getUnderLock()
+org.elasticsearch.search.SearchService.putContext()
 ---------- args name ----------------------
-['uid', 'currentMaps']
+['context']
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.elasticsearch.common.util.concurrent.AbstractRefCounted.incRef()
+---------- args name ----------------------
+[]
+cannot get exact method, return one breakpoint methods having the same name
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.elasticsearch.search.DefaultSearchContext.setTask()
+---------- args name ----------------------
+['task']
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.elasticsearch.search.SearchService.contextProcessing()
+---------- args name ----------------------
+['context']
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.elasticsearch.search.SearchService.contextProcessedSuccessfully()
+---------- args name ----------------------
+['context']
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.elasticsearch.search.SearchService.executeFetchPhase()
+---------- args name ----------------------
+['context', 'afterQueryTime']
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.elasticsearch.search.fetch.FetchPhase.execute()
+---------- args name ----------------------
+['context']
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.elasticsearch.search.SearchService.cleanContext()
+---------- args name ----------------------
+['context']
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.elasticsearch.common.collect.ImmutableOpenMap$Builder.put()
+---------- args name ----------------------
+['key', 'value']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+com.carrotsearch.hppc.ObjectObjectHashMap.put()
+---------- args name ----------------------
+['key', 'value']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.elasticsearch.rest.action.document.RestMultiGetAction.prepareRequest()
+---------- args name ----------------------
+['request', 'client']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.elasticsearch.action.get.MultiGetRequest.add()
+---------- args name ----------------------
+['defaultIndex', 'defaultType', 'defaultFields', 'defaultFetchSource', 'defaultRouting', 'parser', 'allowExplicitIndex']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.elasticsearch.action.get.MultiGetRequest.parseDocuments()
+---------- args name ----------------------
+['parser', 'items', 'defaultIndex', 'defaultType', 'defaultFields', 'defaultFetchSource', 'defaultRouting', 'allowExplicitIndex']
 ---------- tainted args ----------------------
 []
 clear this breakpoint after hit
@@ -65,100 +168,16 @@ clear this breakpoint after hit
 >>>>>>>> breakpoint hit
 
 ---------- breakpoint at method ----------------------
-org.elasticsearch.index.get.ShardGetService.innerGet()
+org.elasticsearch.cluster.metadata.MetaData$Builder.putCustom()
 ---------- args name ----------------------
-['type', 'id', 'gFields', 'realtime', 'version', 'versionType', 'ifSeqNo', 'ifPrimaryTerm', 'fetchSourceContext', 'readFromTranslog']
----------- tainted args ----------------------
-[]
+['type', 'custom']
 clear this breakpoint after hit
 >>>>>>>> breakpoint hit
 
 ---------- breakpoint at method ----------------------
-org.elasticsearch.index.shard.IndexShard.get()
+org.elasticsearch.index.get.ShardGetService.innerGetLoadFromStoredFields()
 ---------- args name ----------------------
-['get']
----------- tainted args ----------------------
-['get']
-clear this breakpoint after hit
->>>>>>>> breakpoint hit
-
----------- breakpoint at method ----------------------
-org.elasticsearch.index.engine.InternalEngine.get()
----------- args name ----------------------
-['get', 'searcherFactory']
----------- tainted args ----------------------
-['get']
-clear this breakpoint after hit
->>>>>>>> breakpoint hit
-
----------- breakpoint at method ----------------------
-org.apache.lucene.codecs.CodecUtil.checkHeader()
----------- args name ----------------------
-['in', 'codec', 'minVersion', 'maxVersion']
----------- tainted args ----------------------
-[]
-clear this breakpoint after hit
->>>>>>>> breakpoint hit
-
----------- breakpoint at method ----------------------
-org.apache.lucene.codecs.CodecUtil.checkHeaderNoMagic()
----------- args name ----------------------
-['in', 'codec', 'minVersion', 'maxVersion']
----------- tainted args ----------------------
-[]
-clear this breakpoint after hit
->>>>>>>> breakpoint hit
-
----------- breakpoint at method ----------------------
-org.apache.lucene.util.BytesRef.utf8ToString()
----------- args name ----------------------
-[]
----------- tainted args ----------------------
-[]
-cannot get exact method, return one breakpoint methods having the same name
-clear this breakpoint after hit
->>>>>>>> breakpoint hit
-
----------- breakpoint at method ----------------------
-org.elasticsearch.action.search.TransportSearchAction.searchAsyncAction()
----------- args name ----------------------
-['task', 'searchRequest', 'shardIterators', 'timeProvider', 'connectionLookup', 'clusterStateVersion', 'aliasFilter', 'concreteIndexBoosts', 'indexRoutings', 'listener', 'preFilter', 'clusters']
----------- tainted args ----------------------
-['task']
-clear this breakpoint after hit
->>>>>>>> breakpoint hit
-
----------- breakpoint at method ----------------------
-org.elasticsearch.action.search.SearchPhaseController.newSearchPhaseResults()
----------- args name ----------------------
-['request', 'numShards']
----------- tainted args ----------------------
-['request']
-clear this breakpoint after hit
->>>>>>>> breakpoint hit
-
----------- breakpoint at method ----------------------
-org.elasticsearch.action.search.TransportSearchAction.searchAsyncAction()
----------- args name ----------------------
-['task', 'searchRequest', 'shardIterators', 'timeProvider', 'connectionLookup', 'clusterStateVersion', 'aliasFilter', 'concreteIndexBoosts', 'indexRoutings', 'listener', 'preFilter', 'clusters']
----------- tainted args ----------------------
-['task']
-clear this breakpoint after hit
->>>>>>>> breakpoint hit
-
----------- breakpoint at method ----------------------
-org.elasticsearch.action.search.SearchPhaseController.newSearchPhaseResults()
----------- args name ----------------------
-['request', 'numShards']
----------- tainted args ----------------------
-['request']
-clear this breakpoint after hit
->>>>>>>> breakpoint hit
-
----------- breakpoint at method ----------------------
-org.elasticsearch.common.xcontent.XContentHelper.convertToMap()
----------- args name ----------------------
-['bytes', 'ordered', 'xContentType']
+['type', 'id', 'gFields', 'fetchSourceContext', 'get', 'mapperService']
 ---------- tainted args ----------------------
 []
 clear this breakpoint after hit
