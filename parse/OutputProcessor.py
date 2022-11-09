@@ -4,7 +4,9 @@ class MyProcessor(object):
     def __init__(self, root_path):
         self.root_dir = root_path
         self.breakpoints_set1 = []
+        self.breakpoints_set2 = []
         self.stacks_output1 = []
+        self.stacks_output2 = []
         
     
     """
@@ -31,6 +33,31 @@ class MyProcessor(object):
                 stack.append({"class" : class_name, "method" : method_name})
         if len(stack) > 0:
             self.stacks_output1.append(stack)
+            
+            
+    """
+        file format:
+        entry <method signature>
+            <method signature>
+            <method signature>
+            
+        entry <method signature>
+            <method signature>
+            <method signature>
+    """
+    def parse_breakpoint_from_RCE_output(self, path, encoding='utf-8'):
+        input_file = open(path, encoding=encoding)
+        self.breakpoints_set2 = []
+        lines = input_file.readlines()
+        begin = False
+        for line in lines:
+            if "Risky entries number :" in line:
+                begin = True
+            
+            if begin:
+                class_name, method_name = ParseUtil.parse_method_sig(line)
+                if class_name != None:
+                    self.breakpoints_set2.append({"class" : class_name, "method" : method_name})
             
             
     """
@@ -68,6 +95,10 @@ class MyProcessor(object):
                 
         print("breakpoints from system_out: " + str(len(self.breakpoints_set1)))
         for dic in self.breakpoints_set1:
+            jdbclient.add_breakpoint(class_name=dic['class'], method_name=dic['method'])
+            
+        print("breakpoints from RCE-output: " + str(len(self.breakpoints_set2)))
+        for dic in self.breakpoints_set2:
             jdbclient.add_breakpoint(class_name=dic['class'], method_name=dic['method'])
                 
             

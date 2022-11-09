@@ -11,16 +11,19 @@ class JdbProcess(object):
         self.file = open("./output/jdbout.txt", "w")
         self.filepath = "./output/jdbout.txt"
         self.break_points = []
+        self.check_field_limit = 0
         
     def add_breakpoint(self, class_name, method_name):
-        self.process.sendline("stop in {class_name}.{entry_method}".format(
-                class_name=class_name, entry_method=method_name
-            ))
-        print("add breakpoint: " + "{class_name}.{entry_method}".format(class_name=class_name, entry_method=method_name))
+        s = "{class_name}.{entry_method}".format(class_name=class_name, entry_method=method_name)
+        if s in self.break_points:
+            return
+        self.process.sendline("stop in " + s)
+        print("add breakpoint: " + s)
+        self.break_points.append(s)
         
         # output may be out of place , we do not try to parse it
         
-        # self.process.expect("\n>")
+        # self.process.expect(pexpect.EOF)
         # result = self.process.before.decode()
         # print(result)
         # if "Set breakpoint" in result:
@@ -28,7 +31,6 @@ class JdbProcess(object):
         # if "It will be set after the class is loaded." in result:
         #     print("Fail")
         
-        self.break_points.append("{class_name}.{entry_method}".format(class_name=class_name, entry_method=method_name))
             
     def wait(self):
         self.process.sendline("run")
@@ -84,9 +86,9 @@ class JdbProcess(object):
     def check_vals(self):
         self.tainted_vals = []
         for val in self.arg_vals:
-            if self.check_val_recurse(val, 3):
+            if self.check_val_recurse(val, self.check_field_limit):
                 self.tainted_vals.append(val)               
-        if self.check_val_recurse("this", 3):
+        if self.check_val_recurse("this", self.check_field_limit):
                 self.tainted_vals.append("[this]")
         self.printLog("---------- tainted args ----------------------")
         self.printLog(self.tainted_vals)
@@ -128,10 +130,13 @@ class JdbProcess(object):
         
         if self.extract_breakpoint_method == None:
             self.printLog("cannot find this method in breakpoint list!?")
+            self.process.sendline("clear {method}".format(method=self.parsed_breakpoint_method))
+            print("[clear] " + "clear {method}".format(method=self.parsed_breakpoint_method))
         else:
             self.process.sendline("clear {method}".format(method=self.extract_breakpoint_method))
             self.break_points.remove(self.extract_breakpoint_method)
             self.printLog("clear this breakpoint after hit")
+            print("[clear] " + "clear {method}".format(method=self.extract_breakpoint_method))
         
     def get_extract_method_breakpoint(self):
         """

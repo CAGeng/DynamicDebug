@@ -1,6 +1,6 @@
 import requests
 import json
-from sendrequest import es
+from sendrequest import es, dubbo
 
 func_con = 0
 
@@ -10,4 +10,6 @@ def send():
     for f in es.ES_funcs:
         func_con += 1
         f()
-    
+    for f in dubbo.dubbo_funcs:
+        func_con += 1
+        f()
