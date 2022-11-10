@@ -9,6 +9,7 @@ def f():
     # print(response.text)
 ES_funcs.append(f)
 
+# 2
 def f():
     url="http://127.0.0.1:9200/sft_index"
     headers = {'content-type': "application/json"}
@@ -29,6 +30,7 @@ def f():
     response = requests.get(url) 
 ES_funcs.append(f)
 
+# 5
 def f():
     url="http://127.0.0.1:9200/sft_index/_doc/SftVeryNiceSftVeryNice"
     body={
@@ -41,12 +43,14 @@ def f():
     # print(response.text)
 ES_funcs.append(f)
 
+# 6
 def f():
     url="http://127.0.0.1:9200/sft_index/_doc/SftVeryNiceSftVeryNice"
     response = requests.get(url) 
     # print(response.text)
 ES_funcs.append(f)
 
+# 7
 def f():
     url="http://127.0.0.1:9200/sft_index/_search"
     response = requests.get(url) 
@@ -73,18 +77,21 @@ def f():
     # print(response.text) 
 ES_funcs.append(f)
 
+# 10
 def f():
     url="http://127.0.0.1:9200/_tasks/task_id:SftVeryNiceSftVeryNice/_cancel"
     response = requests.post(url) 
     # print(response.text) 
 ES_funcs.append(f)
 
+# 11
 def f():
     url="http://127.0.0.1:9200/_tasks/task_id:383838383838/_cancel"
     response = requests.post(url) 
     # print(response.text) 
 ES_funcs.append(f)
 
+# 12
 def f():
     url="http://127.0.0.1:9200/_nodes/stats"
     response = requests.get(url) 
@@ -155,6 +162,7 @@ def f():
     # print(response.text) 
 ES_funcs.append(f)
 
+# 17
 def f():
     url="http://127.0.0.1:9200/_cat/segments/sft_index?v&h=shard,segment,size,size.menory"
     response = requests.get(url) 
@@ -162,5 +170,8 @@ def f():
 ES_funcs.append(f)
 
 if __name__=='__main__':
-    for f in ES_funcs:
-        f()
+    for i in range(len(ES_funcs)):
+        print(i + 1)
+        if i < 10:
+            continue
+        ES_funcs[i]()

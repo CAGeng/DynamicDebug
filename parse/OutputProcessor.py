@@ -5,6 +5,7 @@ class MyProcessor(object):
         self.root_dir = root_path
         self.breakpoints_set1 = []
         self.breakpoints_set2 = []
+        self.breakpoints_set3 = []
         self.stacks_output1 = []
         self.stacks_output2 = []
         
@@ -87,6 +88,21 @@ class MyProcessor(object):
                 if class_name != None:
                     self.breakpoints_set1.append({"class" : class_name, "method" : method_name})
             
+            
+    """
+        file format:
+            <method>  extend long life  <unit>
+    """
+    def parse_breakpoint_from_linger_extend(self, path, encoding='utf-8'):
+        input_file = open(path, encoding=encoding)
+        self.breakpoints_set3 = []
+        lines = input_file.readlines()
+        for line in lines:
+            s = line.split("  extend long life  ")[0]
+            class_name, method_name = ParseUtil.parse_method_sig(s)
+            if class_name != None:
+                self.breakpoints_set3.append({"class" : class_name, "method" : method_name})
+            
     def add_breakpoints(self, jdbclient):
         print("stacks from taint_alloc_size: " + str(len(self.stacks_output1)))
         for stack in self.stacks_output1:
@@ -99,6 +115,10 @@ class MyProcessor(object):
             
         print("breakpoints from RCE-output: " + str(len(self.breakpoints_set2)))
         for dic in self.breakpoints_set2:
+            jdbclient.add_breakpoint(class_name=dic['class'], method_name=dic['method'])
+            
+        print("breakpoints from linger-extend: " + str(len(self.breakpoints_set3)))
+        for dic in self.breakpoints_set3:
             jdbclient.add_breakpoint(class_name=dic['class'], method_name=dic['method'])
                 
             
