@@ -10,7 +10,7 @@ from parse import OutputProcessor, ParseUtil
 debug_lock = threading.Lock()
 finish = False
 begin = False
-debug_port = 8888
+debug_port = 60222
 
 def debug():
     global begin, debug_port, debug_lock, finish
@@ -29,7 +29,8 @@ def debug():
     output_processor = OutputProcessor.MyProcessor("")
     # output_processor.parse_breakpoint_from_file_taint_alloc_size("/mnt/f/code/webdetect/output/ES-output/output/taint-alloc-size.txt")
     # output_processor.parse_breakpoint_from_file_system_out("/mnt/f/code/webdetect/output/out13.txt")
-    output_processor.parse_breakpoint_from_linger_extend("/mnt/f/code/webdetect/output/ES-output/output-8.4.2/longlifeExtend.txt")
+    # output_processor.parse_breakpoint_from_linger_extend("/mnt/f/code/webdetect/output/ES-output/output-8.4.2/longlifeExtend.txt")
+    output_processor.parse_breakpoint_from_file_system_out("/mnt/f/code/webdetect/output/tomcat-output/out-tomcat-raw.txt")
     # output_processor.parse_breakpoint_from_RCE_output("/mnt/f/web module/dubbo-bfei/Dubbo3.1.1.txt")
     output_processor.add_breakpoints(client)
     debug_lock.release()
@@ -76,6 +77,7 @@ def send_my_request():
     while con < 10:
         con += 1
         if finish:
+            print("finish send")
             break
         time.sleep(1)
         debug_lock.acquire()

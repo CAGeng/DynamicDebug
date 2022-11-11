@@ -3,6 +3,8 @@ import re
 from func_timeout import func_set_timeout
 import func_timeout
 
+Taint_Tag = "SftVeryNiceSftVeryNice"
+
 class JdbProcess(object):
     def __init__(self, port):
         self.process = pexpect.spawn("jdb -connect com.sun.jdi.SocketAttach:hostname=localhost,port={port}".format(port=port), timeout=600)

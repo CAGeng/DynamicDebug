@@ -1,7 +1,7 @@
 >>>>>>>> breakpoint hit
 
 ---------- breakpoint at method ----------------------
-org.elasticsearch.indices.IndexingMemoryController$ShardsIndicesStatusChecker.runUnlocked()
+org.apache.coyote.AbstractProcessor.getErrorState()
 ---------- args name ----------------------
 []
 ---------- tainted args ----------------------
@@ -11,18 +11,82 @@ clear this breakpoint after hit
 >>>>>>>> breakpoint hit
 
 ---------- breakpoint at method ----------------------
-org.elasticsearch.rest.RestRequest.param()
+org.apache.coyote.http11.Http11Processor.prepareExpectation()
 ---------- args name ----------------------
-['key']
+['headers']
 ---------- tainted args ----------------------
-['[this]']
+[]
 clear this breakpoint after hit
 >>>>>>>> breakpoint hit
 
 ---------- breakpoint at method ----------------------
-org.elasticsearch.search.SearchService.putReaderContext()
+org.apache.coyote.Request.action()
 ---------- args name ----------------------
-['context']
+['actionCode', 'param']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.apache.coyote.AbstractProcessor.action()
+---------- args name ----------------------
+['actionCode', 'param']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.apache.catalina.valves.AbstractAccessLogValve.invoke()
+---------- args name ----------------------
+['request', 'response']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.apache.catalina.authenticator.AuthenticatorBase.invoke()
+---------- args name ----------------------
+['request', 'response']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.apache.catalina.connector.Request.getUserPrincipal()
+---------- args name ----------------------
+[]
+---------- tainted args ----------------------
+[]
+cannot get exact method, return one breakpoint methods having the same name
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.apache.catalina.connector.Response.addHeader()
+---------- args name ----------------------
+['name', 'value']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.apache.catalina.connector.Response.addHeader()
+---------- args name ----------------------
+['name', 'value', 'charset']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.apache.coyote.AbstractProcessor.setErrorState()
+---------- args name ----------------------
+['errorState', 't']
 ---------- tainted args ----------------------
 []
 clear this breakpoint after hit
