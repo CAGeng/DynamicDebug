@@ -6,8 +6,8 @@ import func_timeout
 Taint_Tag = "SftVeryNiceSftVeryNice"
 
 class JdbProcess(object):
-    def __init__(self, port):
-        self.process = pexpect.spawn("jdb -connect com.sun.jdi.SocketAttach:hostname=localhost,port={port}".format(port=port), timeout=600)
+    def __init__(self, ip, port):
+        self.process = pexpect.spawn("jdb -connect com.sun.jdi.SocketAttach:hostname={ip},port={port}".format(port=port, ip=ip), timeout=600)
         self.port = port
         self.taint_tags = ["SftVeryNiceSftVeryNice", "sft_index", "_search/scroll", "383838383838"]
         self.file = open("./output/jdbout.txt", "w")
@@ -44,10 +44,10 @@ class JdbProcess(object):
         self.process.sendline("locals")
         self.process.expect(r".*\[.*\] ")
         self.raw_locals_result = self.process.after.decode()
-        # print("------------ locals------------------")
-        # print(self.raw_locals_result)
-        # print("-------------------------------------")
-        # print("")
+        print("------------ locals------------------")
+        print(self.raw_locals_result)
+        print("-------------------------------------")
+        print("")
         
     def parse_raw(self):
         # print("------------- raw ---------------------")
@@ -174,3 +174,6 @@ class JdbProcess(object):
         file = open(self.filepath, "a")
         file.write(s + "\n")
         file.close()
+        
+if __name__=='__main__':
+    pexpect.spawn("ls", timeout=600)

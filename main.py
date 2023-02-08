@@ -10,11 +10,12 @@ from parse import OutputProcessor, ParseUtil
 debug_lock = threading.Lock()
 finish = False
 begin = False
-debug_port = 60222
+debug_port = 7002
+ip = "10.176.36.27"
 
 def debug():
     global begin, debug_port, debug_lock, finish
-    client = JdbClient.JdbProcess(debug_port)
+    client = JdbClient.JdbProcess(ip, debug_port)
     
     # 基础使用 demo
     # client.add_breakpoint(
@@ -27,11 +28,12 @@ def debug():
     
     debug_lock.acquire()
     output_processor = OutputProcessor.MyProcessor("")
-    # output_processor.parse_breakpoint_from_file_taint_alloc_size("/mnt/f/code/webdetect/output/ES-output/output/taint-alloc-size.txt")
+    output_processor.parse_breakpoint_from_file_taint_alloc_size("/mnt/f/code/webdetect/output/2-7/run/taint-alloc-size.txt")
     # output_processor.parse_breakpoint_from_file_system_out("/mnt/f/code/webdetect/output/out13.txt")
     # output_processor.parse_breakpoint_from_linger_extend("/mnt/f/code/webdetect/output/ES-output/output-8.4.2/longlifeExtend.txt")
-    output_processor.parse_breakpoint_from_file_system_out("/mnt/f/code/webdetect/output/tomcat-output/out-tomcat-raw.txt")
+    # output_processor.parse_breakpoint_from_file_system_out("/mnt/f/code/webdetect/output/tomcat-output/out-tomcat-raw.txt")
     # output_processor.parse_breakpoint_from_RCE_output("/mnt/f/web module/dubbo-bfei/Dubbo3.1.1.txt")
+    # output_processor.parse_breakpoint_from_simple_list("/mnt/f/code/webdetect/output/1-31/es-test-1/debug/exp-readstring.txt")
     output_processor.add_breakpoints(client)
     debug_lock.release()
     begin = True
@@ -86,6 +88,7 @@ def send_my_request():
 
 thread = threading.Thread(name='t1',target= debug,args=())
 thread.start()
+# begin = True
 thread = threading.Thread(name='t2',target= send_my_request,args=())
 thread.start()
 

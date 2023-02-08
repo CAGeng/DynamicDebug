@@ -1,0 +1,408 @@
+stacks from taint_alloc_size: 361
+[warning] too many breakpoints maybe puzzling, auto split into size 100, only use 100 breakpoints
+add breakpoint: org.elasticsearch.action.termvectors.TransportTermVectorsAction.shardOperation(org.elasticsearch.action.termvectors.TermVectorsRequest,org.elasticsearch.index.shard.ShardId)
+add breakpoint: org.elasticsearch.index.termvectors.TermVectorsService.getTermVectors(org.elasticsearch.index.shard.IndexShard,org.elasticsearch.action.termvectors.TermVectorsRequest)
+add breakpoint: org.elasticsearch.index.termvectors.TermVectorsService.getTermVectors(org.elasticsearch.index.shard.IndexShard,org.elasticsearch.action.termvectors.TermVectorsRequest,java.util.function.LongSupplier)
+add breakpoint: org.elasticsearch.index.shard.IndexShard.get(org.elasticsearch.index.engine.Engine$Get)
+add breakpoint: org.elasticsearch.index.engine.ReadOnlyEngine.get(org.elasticsearch.index.engine.Engine$Get,java.util.function.BiFunction)
+add breakpoint: org.elasticsearch.index.engine.Engine.getFromSearcher(org.elasticsearch.index.engine.Engine$Get,java.util.function.BiFunction,org.elasticsearch.index.engine.Engine$SearcherScope)
+add breakpoint: org.elasticsearch.common.lucene.uid.VersionsAndSeqNoResolver.loadDocIdAndVersion(org.apache.lucene.index.IndexReader,org.apache.lucene.index.Term,boolean)
+add breakpoint: org.elasticsearch.common.lucene.uid.PerThreadIDVersionAndSeqNoLookup.lookupVersion(org.apache.lucene.util.BytesRef,boolean,org.apache.lucene.index.LeafReaderContext)
+add breakpoint: org.elasticsearch.common.lucene.uid.PerThreadIDVersionAndSeqNoLookup.getDocID(org.apache.lucene.util.BytesRef,org.apache.lucene.util.Bits)
+add breakpoint: org.apache.lucene.index.TermsEnum.seekExact(org.apache.lucene.util.BytesRef)
+add breakpoint: org.apache.lucene.index.MultiTermsEnum.seekCeil(org.apache.lucene.util.BytesRef)
+add breakpoint: org.apache.lucene.index.FilterLeafReader$FilterTermsEnum.seekCeil(org.apache.lucene.util.BytesRef)
+add breakpoint: org.apache.lucene.codecs.blocktree.SegmentTermsEnum.seekCeil(org.apache.lucene.util.BytesRef)
+add breakpoint: org.apache.lucene.codecs.blocktree.SegmentTermsEnumFrame.loadBlock()
+add breakpoint: org.elasticsearch.action.admin.indices.forcemerge.TransportForceMergeAction.shardOperation(org.elasticsearch.action.admin.indices.forcemerge.ForceMergeRequest,org.elasticsearch.cluster.routing.ShardRouting)
+add breakpoint: org.elasticsearch.index.shard.IndexShard.forceMerge(org.elasticsearch.action.admin.indices.forcemerge.ForceMergeRequest)
+add breakpoint: org.elasticsearch.index.engine.InternalEngine.forceMerge(boolean,int,boolean,boolean,boolean)
+add breakpoint: org.apache.lucene.index.IndexWriter.forceMerge(int,boolean)
+add breakpoint: org.apache.lucene.index.IndexWriter.maybeMerge(org.apache.lucene.index.MergePolicy,org.apache.lucene.index.MergeTrigger,int)
+add breakpoint: org.apache.lucene.index.SerialMergeScheduler.merge(org.apache.lucene.index.IndexWriter,org.apache.lucene.index.MergeTrigger,boolean)
+add breakpoint: org.apache.lucene.index.IndexWriter.merge(org.apache.lucene.index.MergePolicy$OneMerge)
+add breakpoint: org.apache.lucene.index.IndexWriter.mergeMiddle(org.apache.lucene.index.MergePolicy$OneMerge,org.apache.lucene.index.MergePolicy)
+add breakpoint: org.apache.lucene.index.SegmentMerger.merge()
+add breakpoint: org.apache.lucene.index.SegmentMerger.mergeTerms(org.apache.lucene.index.SegmentWriteState)
+add breakpoint: org.apache.lucene.codecs.FieldsConsumer.merge(org.apache.lucene.index.MergeState)
+add breakpoint: org.apache.lucene.codecs.blocktree.BlockTreeTermsWriter.write(org.apache.lucene.index.Fields)
+add breakpoint: org.apache.lucene.codecs.blocktree.BlockTreeTermsWriter$TermsWriter.write(org.apache.lucene.util.BytesRef,org.apache.lucene.index.TermsEnum)
+add breakpoint: org.apache.lucene.codecs.blocktree.BlockTreeTermsWriter$PendingBlock.compileIndex(java.util.List,org.apache.lucene.store.RAMOutputStream,org.apache.lucene.util.IntsRefBuilder)
+add breakpoint: org.apache.lucene.codecs.blocktree.BlockTreeTermsWriter$TermsWriter.pushTerm(org.apache.lucene.util.BytesRef)
+add breakpoint: org.apache.lucene.codecs.blocktree.BlockTreeTermsWriter$TermsWriter.writeBlocks(int,int)
+add breakpoint: org.apache.lucene.codecs.blocktree.BlockTreeTermsReader.readBytesRef(org.apache.lucene.store.IndexInput)
+add breakpoint: org.apache.lucene.index.ReadersAndUpdates.getReaderForMerge(org.apache.lucene.store.IOContext)
+add breakpoint: org.apache.lucene.index.ReadersAndUpdates.getReader(org.apache.lucene.store.IOContext)
+add breakpoint: org.apache.lucene.codecs.lucene50.Lucene50PostingsFormat.fieldsProducer(org.apache.lucene.index.SegmentReadState)
+add breakpoint: org.apache.lucene.index.SoftDeletesRetentionMergePolicy.getScorer(org.apache.lucene.search.Query,org.apache.lucene.index.CodecReader)
+add breakpoint: org.elasticsearch.search.profile.query.ProfileWeight.scorer(org.apache.lucene.index.LeafReaderContext)
+add breakpoint: org.elasticsearch.search.profile.query.ProfileWeight.scorerSupplier(org.apache.lucene.index.LeafReaderContext)
+add breakpoint: org.apache.lucene.search.Weight.scorerSupplier(org.apache.lucene.index.LeafReaderContext)
+add breakpoint: org.apache.lucene.search.TermInSetQuery$1.scorer(org.apache.lucene.index.LeafReaderContext)
+add breakpoint: org.apache.lucene.search.DocValuesRewriteMethod$MultiTermQueryDocValuesWrapper$1.scorer(org.apache.lucene.index.LeafReaderContext)
+add breakpoint: org.apache.lucene.codecs.blocktree.IntersectTermsEnum.next()
+add breakpoint: org.apache.lucene.codecs.blocktree.IntersectTermsEnum._next()
+add breakpoint: org.apache.lucene.codecs.blocktree.IntersectTermsEnum.pushFrame(int)
+add breakpoint: org.apache.lucene.codecs.blocktree.IntersectTermsEnum.getFrame(int)
+add breakpoint: org.apache.lucene.codecs.blocktree.IntersectTermsEnumFrame.load(org.apache.lucene.util.BytesRef)
+add breakpoint: org.apache.lucene.codecs.blocktree.IntersectTermsEnum.skipPastLastAutoPrefixTerm()
+add breakpoint: org.apache.lucene.codecs.blocktree.IntersectTermsEnum.popPushNext()
+add breakpoint: org.apache.lucene.codecs.blocktree.IntersectTermsEnumFrame.loadNextFloorBlock()
+add breakpoint: org.apache.lucene.codecs.CodecUtil.verifyAndCopyIndexHeader(org.apache.lucene.store.IndexInput,org.apache.lucene.store.DataOutput,byte[])
+breakpoints from system_out: 0
+breakpoints from RCE-output: 0
+breakpoints from linger-extend: 0
+-------------------- begin sending -----------------------------
+>>>>>>>> breakpoint hit
+
+------------ locals------------------
+locals
+Method arguments:
+get = instance of org.elasticsearch.index.engine.Engine$Get(id=15081)
+Local variables:
+elasticsearch[rVGcKu8][get][T#1][1] 
+-------------------------------------
+
+---------- breakpoint at method ----------------------
+org.elasticsearch.index.shard.IndexShard.get()
+---------- args name ----------------------
+['get']
+---------- tainted args ----------------------
+['get']
+clear this breakpoint after hit
+[clear] clear org.elasticsearch.index.shard.IndexShard.get(org.elasticsearch.index.engine.Engine$Get)
+>>>>>>>> breakpoint hit
+
+------------ locals------------------
+locals
+Method arguments:
+fields = instance of org.apache.lucene.codecs.perfield.PerFieldPostingsFormat$FieldsWriter$1(id=15137)
+Local variables:
+elasticsearch[rVGcKu8][get][T#1][1] 
+-------------------------------------
+
+---------- breakpoint at method ----------------------
+org.apache.lucene.codecs.blocktree.BlockTreeTermsWriter.write()
+---------- args name ----------------------
+['fields']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+[clear] clear org.apache.lucene.codecs.blocktree.BlockTreeTermsWriter.write(org.apache.lucene.index.Fields)
+>>>>>>>> breakpoint hit
+
+------------ locals------------------
+locals
+Method arguments:
+text = instance of org.apache.lucene.util.BytesRef(id=15151)
+termsEnum = instance of org.apache.lucene.index.FreqProxFields$FreqProxTermsEnum(id=15152)
+Local variables:
+elasticsearch[rVGcKu8][get][T#1][1] 
+-------------------------------------
+
+---------- breakpoint at method ----------------------
+org.apache.lucene.codecs.blocktree.BlockTreeTermsWriter$TermsWriter.write()
+---------- args name ----------------------
+['text', 'termsEnum']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+[clear] clear org.apache.lucene.codecs.blocktree.BlockTreeTermsWriter$TermsWriter.write(org.apache.lucene.util.BytesRef,org.apache.lucene.index.TermsEnum)
+>>>>>>>> breakpoint hit
+
+------------ locals------------------
+locals
+Method arguments:
+text = instance of org.apache.lucene.util.BytesRef(id=15151)
+Local variables:
+elasticsearch[rVGcKu8][get][T#1][1] 
+-------------------------------------
+
+---------- breakpoint at method ----------------------
+org.apache.lucene.codecs.blocktree.BlockTreeTermsWriter$TermsWriter.pushTerm()
+---------- args name ----------------------
+['text']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+[clear] clear org.apache.lucene.codecs.blocktree.BlockTreeTermsWriter$TermsWriter.pushTerm(org.apache.lucene.util.BytesRef)
+>>>>>>>> breakpoint hit
+
+------------ locals------------------
+locals
+Method arguments:
+prefixLength = 0
+count = 1
+Local variables:
+elasticsearch[rVGcKu8][get][T#1][1] 
+-------------------------------------
+
+---------- breakpoint at method ----------------------
+org.apache.lucene.codecs.blocktree.BlockTreeTermsWriter$TermsWriter.writeBlocks()
+---------- args name ----------------------
+['prefixLength', 'count']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+[clear] clear org.apache.lucene.codecs.blocktree.BlockTreeTermsWriter$TermsWriter.writeBlocks(int,int)
+>>>>>>>> breakpoint hit
+
+------------ locals------------------
+locals
+Method arguments:
+blocks = instance of java.util.ArrayList(id=15166)
+scratchBytes = instance of org.apache.lucene.store.RAMOutputStream(id=15148)
+scratchIntsRef = instance of org.apache.lucene.util.IntsRefBuilder(id=15149)
+Local variables:
+elasticsearch[rVGcKu8][get][T#1][1] 
+-------------------------------------
+
+---------- breakpoint at method ----------------------
+org.apache.lucene.codecs.blocktree.BlockTreeTermsWriter$PendingBlock.compileIndex()
+---------- args name ----------------------
+['blocks', 'scratchBytes', 'scratchIntsRef']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+[clear] clear org.apache.lucene.codecs.blocktree.BlockTreeTermsWriter$PendingBlock.compileIndex(java.util.List,org.apache.lucene.store.RAMOutputStream,org.apache.lucene.util.IntsRefBuilder)
+>>>>>>>> breakpoint hit
+
+------------ locals------------------
+locals
+Method arguments:
+in = instance of org.apache.lucene.store.BufferedChecksumIndexInput(id=15182)
+out = instance of org.elasticsearch.index.store.ByteSizeCachingDirectory$2(id=15183)
+expectedID = instance of byte[16] 
+-------------------------------------
+
+---------- breakpoint at method ----------------------
+org.apache.lucene.codecs.CodecUtil.verifyAndCopyIndexHeader()
+---------- args name ----------------------
+['in', 'out', 'expectedID']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+[clear] clear org.apache.lucene.codecs.CodecUtil.verifyAndCopyIndexHeader(org.apache.lucene.store.IndexInput,org.apache.lucene.store.DataOutput,byte[])
+>>>>>>>> breakpoint hit
+
+------------ locals------------------
+locals
+Method arguments:
+context = instance of org.apache.lucene.store.IOContext(id=15192)
+Local variables:
+elasticsearch[rVGcKu8][get][T#1][1] 
+-------------------------------------
+
+---------- breakpoint at method ----------------------
+org.apache.lucene.index.ReadersAndUpdates.getReader()
+---------- args name ----------------------
+['context']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+[clear] clear org.apache.lucene.index.ReadersAndUpdates.getReader(org.apache.lucene.store.IOContext)
+>>>>>>>> breakpoint hit
+
+------------ locals------------------
+locals
+Method arguments:
+state = instance of org.apache.lucene.index.SegmentReadState(id=15203)
+Local variables:
+elasticsearch[rVGcKu8][get][T#1][1] 
+-------------------------------------
+
+---------- breakpoint at method ----------------------
+org.apache.lucene.codecs.lucene50.Lucene50PostingsFormat.fieldsProducer()
+---------- args name ----------------------
+['state']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+[clear] clear org.apache.lucene.codecs.lucene50.Lucene50PostingsFormat.fieldsProducer(org.apache.lucene.index.SegmentReadState)
+>>>>>>>> breakpoint hit
+
+------------ locals------------------
+locals
+Method arguments:
+in = instance of org.apache.lucene.store.ByteBufferIndexInput$SingleBufferImpl(id=15218)
+Local variables:
+elasticsearch[rVGcKu8][get][T#1][1] 
+-------------------------------------
+
+---------- breakpoint at method ----------------------
+org.apache.lucene.codecs.blocktree.BlockTreeTermsReader.readBytesRef()
+---------- args name ----------------------
+['in']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+[clear] clear org.apache.lucene.codecs.blocktree.BlockTreeTermsReader.readBytesRef(org.apache.lucene.store.IndexInput)
+>>>>>>>> breakpoint hit
+
+------------ locals------------------
+locals
+Method arguments:
+mergePolicy = instance of org.elasticsearch.index.shard.ElasticsearchMergePolicy(id=15223)
+trigger = instance of org.apache.lucene.index.MergeTrigger(id=15224)
+maxNumSegments = -1
+Local variables:
+elasticsearch[rVGcKu8][get][T#1][1] 
+-------------------------------------
+
+---------- breakpoint at method ----------------------
+org.apache.lucene.index.IndexWriter.maybeMerge()
+---------- args name ----------------------
+['mergePolicy', 'trigger', 'maxNumSegments']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+[clear] clear org.apache.lucene.index.IndexWriter.maybeMerge(org.apache.lucene.index.MergePolicy,org.apache.lucene.index.MergeTrigger,int)
+>>>>>>>> breakpoint hit
+
+------------ locals------------------
+    deleter: instance of org.apache.lucene.index.IndexFileDeleter(id=15249)
+    segmentsToMerge: instance of java.util.HashMap(id=15250)
+    mergeMaxNumSegments: 0
+    writeLock: instance of org.apache.lucene.store.NativeFSLockFactory$NativeFSLock(id=15251)
+    closed: false
+    closing: false
+    maybeMerge: instance of java.util.concurrent.atomic.AtomicBoolean(id=15252)
+    commitUserData: instance of org.elasticsearch.index.engine.InternalEngine$$Lambda$3490.0x00000008015afa68(id=15253)
+    mergingSegments: instance of java.util.HashSet(id=15254)
+    mergeScheduler: instance of org.elasticsearch.index.engine.InternalEngine$EngineMergeScheduler(id=15255)
+    pendingMerges: instance of java.util.LinkedList(id=15256)
+    runningMerges: instance of java.util.HashSet(id=15257)
+    mergeExceptions: instance of java.util.ArrayList(id=15258)
+    mergeGen: 0
+    stopMerges: false
+    didMessageState: false
+    flushCount: instance of java.util.concurrent.atomic.AtomicInteger(id=15259)
+    flushDeletesCount: instance of java.util.concurrent.atomic.AtomicInteger(id=15260)
+    readerPool: instance of org.apache.lucene.index.ReaderPool(id=15261)
+    bufferedUpdatesStream: instance of org.apache.lucene.index.BufferedUpdatesStream(id=15262)
+    mergeFinishedGen: instance of java.util.concurrent.atomic.AtomicLong(id=15263)
+    config: instance of org.apache.lucene.index.IndexWriterConfig(id=15264)
+    startCommitTime: 2947584276039657
+locals
+    pendingNumDocs: instance of java.util.concurrent.atomic.AtomicLong(id=15265)
+    softDeletesEnabled: true
+Method arguments:
+get = instance of org.elasticsearch.index.engine.Engine$Get(id=15081)
+searcherFactory = instance of org.elasticsearch.index.shard.IndexShard$$Lambda$3333.0x0000000801573c20(id=15266)
+    flushNotifications: instance of org.apache.lucene.index.IndexWriter$1(id=15268)
+scope = instance of org.elasticsearch.index.engine.Engine$SearcherScope(id=15267)
+Local variables:
+elasticsearch[rVGcKu8][get][T#1][1] 
+-------------------------------------
+
+---------- breakpoint at method ----------------------
+org.elasticsearch.index.engine.Engine.getFromSearcher()
+---------- args name ----------------------
+['get', 'searcherFactory', '    flushNotifications: instance of org.apache.lucene.index.IndexWriter$1(id=15268)\r', 'scope']
+---------- tainted args ----------------------
+[]
+cannot get exact method, return one breakpoint methods having the same name
+clear this breakpoint after hit
+[clear] clear org.elasticsearch.index.engine.Engine.getFromSearcher(org.elasticsearch.index.engine.Engine$Get,java.util.function.BiFunction,org.elasticsearch.index.engine.Engine$SearcherScope)
+>>>>>>>> breakpoint hit
+
+------------ locals------------------
+    noOpKeyedLock: instance of org.elasticsearch.common.util.concurrent.KeyedLock(id=15303)
+    historyUUID: "mlz_EMyzS2atOiLfLNe4Zw"
+    refreshIfNeededMutex: instance of java.lang.Object(id=15305)
+    $assertionsDisabled: true
+    org.elasticsearch.index.engine.Engine.SYNC_COMMIT_ID: "sync_id"
+    org.elasticsearch.index.engine.Engine.HISTORY_UUID_KEY: "history_uuid"
+    org.elasticsearch.index.engine.Engine.MIN_RETAINED_SEQNO: "min_retained_seq_no"
+    org.elasticsearch.index.engine.Engine.MAX_UNSAFE_AUTO_ID_TIMESTAMP_COMMIT_ID: "max_unsafe_auto_id_timestamp"
+    org.elasticsearch.index.engine.Engine.CAN_MATCH_SEARCH_SOURCE: "can_match"
+    org.elasticsearch.index.engine.Engine.shardId: instance of org.elasticsearch.index.shard.ShardId(id=15135)
+    org.elasticsearch.index.engine.Engine.allocationId: "MWWTG16DTBGN2QQOSnt2oQ"
+    org.elasticsearch.index.engine.Engine.logger: instance of org.elasticsearch.common.logging.PrefixLogger(id=15312)
+    org.elasticsearch.index.engine.Engine.engineConfig: instance of org.elasticsearch.index.engine.EngineConfig(id=15313)
+    org.elasticsearch.index.engine.Engine.store: instance of org.elasticsearch.index.store.Store(id=15090)
+    org.elasticsearch.index.engine.Engine.isClosed: instance of java.util.concurrent.atomic.AtomicBoolean(id=15314)
+    org.elasticsearch.index.engine.Engine.closedLatch: instance of java.util.concurrent.CountDownLatch(id=15315)
+    org.elasticsearch.index.engine.Engine.eventListener: instance of org.elasticsearch.index.shard.IndexShard$ShardEventListener(id=15123)
+    org.elasticsearch.index.engine.Engine.failEngineLock: instance of java.util.concurrent.locks.ReentrantLock(id=15316)
+    org.elasticsearch.index.engine.Engine.rwl: instance of java.util.concurrent.locks.ReentrantReadWriteLock(id=15317)
+    org.elasticsearch.index.engine.Engine.readLock: instance of org.elasticsearch.common.util.concurrent.ReleasableLock(id=15318)
+    org.elasticsearch.index.engine.Engine.writeLock: instance of org.elasticsearch.common.util.concurrent.ReleasableLock(id=15319)
+    org.elasticsearch.index.engine.Engine.failedEngine: instance of org.apache.lucene.util.SetOnce(id=15320)
+    org.elasticsearch.index.engine.Engine.lastWriteNanos: 2947684886632689
+locals
+    org.elasticsearch.index.engine.Engine.maxSeqNoOfUpdatesOrDeletes: instance of java.util.concurrent.atomic.AtomicLong(id=15321)
+Method arguments:
+reader = instance of org.elasticsearch.common.lucene.index.ElasticsearchDirectoryReader(id=15322)
+term = instance of org.apache.lucene.index.Term(id=15082)
+loadSeqNo = true
+Local variables:
+elasticsearch[rVGcKu8][get][T#1][1] 
+-------------------------------------
+
+---------- breakpoint at method ----------------------
+org.elasticsearch.common.lucene.uid.VersionsAndSeqNoResolver.loadDocIdAndVersion()
+---------- args name ----------------------
+['reader', 'term', 'loadSeqNo']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+[clear] clear org.elasticsearch.common.lucene.uid.VersionsAndSeqNoResolver.loadDocIdAndVersion(org.apache.lucene.index.IndexReader,org.apache.lucene.index.Term,boolean)
+>>>>>>>> breakpoint hit
+
+------------ locals------------------
+locals
+Method arguments:
+id = instance of org.apache.lucene.util.BytesRef(id=15331)
+loadSeqNo = true
+context = instance of org.apache.lucene.index.LeafReaderContext(id=15332)
+Local variables:
+elasticsearch[rVGcKu8][get][T#1][1] 
+-------------------------------------
+
+---------- breakpoint at method ----------------------
+org.elasticsearch.common.lucene.uid.PerThreadIDVersionAndSeqNoLookup.lookupVersion()
+---------- args name ----------------------
+['id', 'loadSeqNo', 'context']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+[clear] clear org.elasticsearch.common.lucene.uid.PerThreadIDVersionAndSeqNoLookup.lookupVersion(org.apache.lucene.util.BytesRef,boolean,org.apache.lucene.index.LeafReaderContext)
+>>>>>>>> breakpoint hit
+
+------------ locals------------------
+locals
+Method arguments:
+id = instance of org.apache.lucene.util.BytesRef(id=15331)
+liveDocs = null
+Local variables:
+elasticsearch[rVGcKu8][get][T#1][1] 
+-------------------------------------
+
+---------- breakpoint at method ----------------------
+org.elasticsearch.common.lucene.uid.PerThreadIDVersionAndSeqNoLookup.getDocID()
+---------- args name ----------------------
+['id', 'liveDocs']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+[clear] clear org.elasticsearch.common.lucene.uid.PerThreadIDVersionAndSeqNoLookup.getDocID(org.apache.lucene.util.BytesRef,org.apache.lucene.util.Bits)
+>>>>>>>> breakpoint hit
+
+------------ locals------------------
+locals
+No local variables
+elasticsearch[rVGcKu8][get][T#1][1] 
+-------------------------------------
+
+---------- breakpoint at method ----------------------
+org.apache.lucene.codecs.blocktree.SegmentTermsEnumFrame.loadBlock()
+---------- args name ----------------------
+[]
+---------- tainted args ----------------------
+[]
+cannot get exact method, return one breakpoint methods having the same name
+clear this breakpoint after hit
+[clear] clear org.apache.lucene.codecs.blocktree.SegmentTermsEnumFrame.loadBlock()
+debug waiting timeout, so we think it has finished
+finish send

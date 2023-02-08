@@ -1,9 +1,108 @@
 >>>>>>>> breakpoint hit
 
 ---------- breakpoint at method ----------------------
-org.apache.coyote.AbstractProcessor.getErrorState()
+org.elasticsearch.index.shard.IndexShard.get()
 ---------- args name ----------------------
+['get']
+---------- tainted args ----------------------
+['get']
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.apache.lucene.codecs.blocktree.BlockTreeTermsWriter.write()
+---------- args name ----------------------
+['fields']
+---------- tainted args ----------------------
 []
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.apache.lucene.codecs.blocktree.BlockTreeTermsWriter$TermsWriter.write()
+---------- args name ----------------------
+['text', 'termsEnum']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.apache.lucene.codecs.blocktree.BlockTreeTermsWriter$TermsWriter.pushTerm()
+---------- args name ----------------------
+['text']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.apache.lucene.codecs.blocktree.BlockTreeTermsWriter$TermsWriter.writeBlocks()
+---------- args name ----------------------
+['prefixLength', 'count']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.apache.lucene.codecs.blocktree.BlockTreeTermsWriter$PendingBlock.compileIndex()
+---------- args name ----------------------
+['blocks', 'scratchBytes', 'scratchIntsRef']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.apache.lucene.codecs.CodecUtil.verifyAndCopyIndexHeader()
+---------- args name ----------------------
+['in', 'out', 'expectedID']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.apache.lucene.index.ReadersAndUpdates.getReader()
+---------- args name ----------------------
+['context']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.apache.lucene.codecs.lucene50.Lucene50PostingsFormat.fieldsProducer()
+---------- args name ----------------------
+['state']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.apache.lucene.codecs.blocktree.BlockTreeTermsReader.readBytesRef()
+---------- args name ----------------------
+['in']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.apache.lucene.index.IndexWriter.maybeMerge()
+---------- args name ----------------------
+['mergePolicy', 'trigger', 'maxNumSegments']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.elasticsearch.index.engine.Engine.getFromSearcher()
+---------- args name ----------------------
+['get', 'searcherFactory', '    flushNotifications: instance of org.apache.lucene.index.IndexWriter$1(id=15268)\r', 'scope']
 ---------- tainted args ----------------------
 []
 cannot get exact method, return one breakpoint methods having the same name
@@ -11,82 +110,37 @@ clear this breakpoint after hit
 >>>>>>>> breakpoint hit
 
 ---------- breakpoint at method ----------------------
-org.apache.coyote.http11.Http11Processor.prepareExpectation()
+org.elasticsearch.common.lucene.uid.VersionsAndSeqNoResolver.loadDocIdAndVersion()
 ---------- args name ----------------------
-['headers']
+['reader', 'term', 'loadSeqNo']
 ---------- tainted args ----------------------
 []
 clear this breakpoint after hit
 >>>>>>>> breakpoint hit
 
 ---------- breakpoint at method ----------------------
-org.apache.coyote.Request.action()
+org.elasticsearch.common.lucene.uid.PerThreadIDVersionAndSeqNoLookup.lookupVersion()
 ---------- args name ----------------------
-['actionCode', 'param']
+['id', 'loadSeqNo', 'context']
 ---------- tainted args ----------------------
 []
 clear this breakpoint after hit
 >>>>>>>> breakpoint hit
 
 ---------- breakpoint at method ----------------------
-org.apache.coyote.AbstractProcessor.action()
+org.elasticsearch.common.lucene.uid.PerThreadIDVersionAndSeqNoLookup.getDocID()
 ---------- args name ----------------------
-['actionCode', 'param']
+['id', 'liveDocs']
 ---------- tainted args ----------------------
 []
 clear this breakpoint after hit
 >>>>>>>> breakpoint hit
 
 ---------- breakpoint at method ----------------------
-org.apache.catalina.valves.AbstractAccessLogValve.invoke()
----------- args name ----------------------
-['request', 'response']
----------- tainted args ----------------------
-[]
-clear this breakpoint after hit
->>>>>>>> breakpoint hit
-
----------- breakpoint at method ----------------------
-org.apache.catalina.authenticator.AuthenticatorBase.invoke()
----------- args name ----------------------
-['request', 'response']
----------- tainted args ----------------------
-[]
-clear this breakpoint after hit
->>>>>>>> breakpoint hit
-
----------- breakpoint at method ----------------------
-org.apache.catalina.connector.Request.getUserPrincipal()
+org.apache.lucene.codecs.blocktree.SegmentTermsEnumFrame.loadBlock()
 ---------- args name ----------------------
 []
 ---------- tainted args ----------------------
 []
 cannot get exact method, return one breakpoint methods having the same name
-clear this breakpoint after hit
->>>>>>>> breakpoint hit
-
----------- breakpoint at method ----------------------
-org.apache.catalina.connector.Response.addHeader()
----------- args name ----------------------
-['name', 'value']
----------- tainted args ----------------------
-[]
-clear this breakpoint after hit
->>>>>>>> breakpoint hit
-
----------- breakpoint at method ----------------------
-org.apache.catalina.connector.Response.addHeader()
----------- args name ----------------------
-['name', 'value', 'charset']
----------- tainted args ----------------------
-[]
-clear this breakpoint after hit
->>>>>>>> breakpoint hit
-
----------- breakpoint at method ----------------------
-org.apache.coyote.AbstractProcessor.setErrorState()
----------- args name ----------------------
-['errorState', 't']
----------- tainted args ----------------------
-[]
 clear this breakpoint after hit
