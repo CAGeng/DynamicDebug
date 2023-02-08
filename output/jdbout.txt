@@ -1,63 +1,18 @@
 >>>>>>>> breakpoint hit
 
 ---------- breakpoint at method ----------------------
-org.elasticsearch.index.shard.IndexShard.get()
+org.apache.lucene.analysis.Analyzer.tokenStream()
 ---------- args name ----------------------
-['get']
----------- tainted args ----------------------
-['get']
-clear this breakpoint after hit
->>>>>>>> breakpoint hit
-
----------- breakpoint at method ----------------------
-org.apache.lucene.codecs.blocktree.BlockTreeTermsWriter.write()
----------- args name ----------------------
-['fields']
+['fieldName', 'text']
 ---------- tainted args ----------------------
 []
 clear this breakpoint after hit
 >>>>>>>> breakpoint hit
 
 ---------- breakpoint at method ----------------------
-org.apache.lucene.codecs.blocktree.BlockTreeTermsWriter$TermsWriter.write()
+org.apache.lucene.analysis.standard.StandardTokenizer.setMaxTokenLength()
 ---------- args name ----------------------
-['text', 'termsEnum']
----------- tainted args ----------------------
-[]
-clear this breakpoint after hit
->>>>>>>> breakpoint hit
-
----------- breakpoint at method ----------------------
-org.apache.lucene.codecs.blocktree.BlockTreeTermsWriter$TermsWriter.pushTerm()
----------- args name ----------------------
-['text']
----------- tainted args ----------------------
-[]
-clear this breakpoint after hit
->>>>>>>> breakpoint hit
-
----------- breakpoint at method ----------------------
-org.apache.lucene.codecs.blocktree.BlockTreeTermsWriter$TermsWriter.writeBlocks()
----------- args name ----------------------
-['prefixLength', 'count']
----------- tainted args ----------------------
-[]
-clear this breakpoint after hit
->>>>>>>> breakpoint hit
-
----------- breakpoint at method ----------------------
-org.apache.lucene.codecs.blocktree.BlockTreeTermsWriter$PendingBlock.compileIndex()
----------- args name ----------------------
-['blocks', 'scratchBytes', 'scratchIntsRef']
----------- tainted args ----------------------
-[]
-clear this breakpoint after hit
->>>>>>>> breakpoint hit
-
----------- breakpoint at method ----------------------
-org.apache.lucene.codecs.CodecUtil.verifyAndCopyIndexHeader()
----------- args name ----------------------
-['in', 'out', 'expectedID']
+['length']
 ---------- tainted args ----------------------
 []
 clear this breakpoint after hit
@@ -73,27 +28,27 @@ clear this breakpoint after hit
 >>>>>>>> breakpoint hit
 
 ---------- breakpoint at method ----------------------
-org.apache.lucene.codecs.lucene50.Lucene50PostingsFormat.fieldsProducer()
+org.elasticsearch.index.shard.IndexShard.get()
 ---------- args name ----------------------
-['state']
+['get']
 ---------- tainted args ----------------------
 []
 clear this breakpoint after hit
 >>>>>>>> breakpoint hit
 
 ---------- breakpoint at method ----------------------
-org.apache.lucene.codecs.blocktree.BlockTreeTermsReader.readBytesRef()
+org.apache.lucene.codecs.lucene60.Lucene60FieldInfosFormat.read()
 ---------- args name ----------------------
-['in']
+['directory', 'segmentInfo', 'segmentSuffix', 'context']
 ---------- tainted args ----------------------
 []
 clear this breakpoint after hit
 >>>>>>>> breakpoint hit
 
 ---------- breakpoint at method ----------------------
-org.apache.lucene.index.IndexWriter.maybeMerge()
+org.elasticsearch.index.engine.InternalEngine.get()
 ---------- args name ----------------------
-['mergePolicy', 'trigger', 'maxNumSegments']
+['get', 'searcherFactory']
 ---------- tainted args ----------------------
 []
 clear this breakpoint after hit
@@ -102,19 +57,19 @@ clear this breakpoint after hit
 ---------- breakpoint at method ----------------------
 org.elasticsearch.index.engine.Engine.getFromSearcher()
 ---------- args name ----------------------
-['get', 'searcherFactory', '    flushNotifications: instance of org.apache.lucene.index.IndexWriter$1(id=15268)\r', 'scope']
+['get', 'searcherFactory', 'scope']
 ---------- tainted args ----------------------
 []
-cannot get exact method, return one breakpoint methods having the same name
 clear this breakpoint after hit
 >>>>>>>> breakpoint hit
 
 ---------- breakpoint at method ----------------------
 org.elasticsearch.common.lucene.uid.VersionsAndSeqNoResolver.loadDocIdAndVersion()
 ---------- args name ----------------------
-['reader', 'term', 'loadSeqNo']
+[]
 ---------- tainted args ----------------------
 []
+cannot get exact method, return one breakpoint methods having the same name
 clear this breakpoint after hit
 >>>>>>>> breakpoint hit
 
@@ -137,7 +92,100 @@ clear this breakpoint after hit
 >>>>>>>> breakpoint hit
 
 ---------- breakpoint at method ----------------------
+org.apache.lucene.index.IndexWriter.maybeMerge()
+---------- args name ----------------------
+['mergePolicy', 'trigger', 'maxNumSegments']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.apache.lucene.codecs.blocktree.SegmentTermsEnum.pushFrame()
+---------- args name ----------------------
+['arc', '    docWriter: instance of org.apache.lucene.index.DocumentsWriter(id=15273)\r']
+---------- tainted args ----------------------
+[]
+cannot find this method in breakpoint list!?
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.apache.lucene.codecs.blocktree.SegmentTermsEnum.getFrame()
+---------- args name ----------------------
+['ord']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
 org.apache.lucene.codecs.blocktree.SegmentTermsEnumFrame.loadBlock()
+---------- args name ----------------------
+[]
+---------- tainted args ----------------------
+[]
+cannot get exact method, return one breakpoint methods having the same name
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+[parse error] raw is :      $assertionsDisabled: true
+}
+elasticsearch[rVGcKu8][get][T#1][1]
+---------- args name ----------------------
+[]
+---------- tainted args ----------------------
+[]
+cannot find this method in breakpoint list!?
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.elasticsearch.search.DefaultSearchContext.preProcess()
+---------- args name ----------------------
+['rewrite']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.apache.lucene.codecs.blocktree.SegmentTermsEnum.pushFrame()
+---------- args name ----------------------
+['arc', 'frameData', 'length']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.elasticsearch.index.query.AbstractQueryBuilder.toQuery()
+---------- args name ----------------------
+['context']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.elasticsearch.index.query.MultiMatchQueryBuilder.doToQuery()
+---------- args name ----------------------
+['context']
+---------- tainted args ----------------------
+[]
+clear this breakpoint after hit
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.elasticsearch.index.search.MultiMatchQuery.parse()
+---------- args name ----------------------
+['type', 'fieldNames', '    QUERY_FIELD: instance of org.elasticsearch.common.ParseField(id=15402)\r']
+---------- tainted args ----------------------
+[]
+cannot find this method in breakpoint list!?
+>>>>>>>> breakpoint hit
+
+---------- breakpoint at method ----------------------
+org.elasticsearch.index.search.MultiMatchQuery.parse()
 ---------- args name ----------------------
 []
 ---------- tainted args ----------------------

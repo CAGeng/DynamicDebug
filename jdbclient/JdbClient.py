@@ -12,8 +12,11 @@ class JdbProcess(object):
         self.taint_tags = ["SftVeryNiceSftVeryNice", "sft_index", "_search/scroll", "383838383838"]
         self.file = open("./output/jdbout.txt", "w")
         self.filepath = "./output/jdbout.txt"
+        self.filepath2 = "./output/tainted_class_type.txt"
+        open(self.filepath2, "w")
         self.break_points = []
         self.check_field_limit = 0
+        self.all_tainted_type = []
         
     def add_breakpoint(self, class_name, method_name):
         s = "{class_name}.{entry_method}".format(class_name=class_name, entry_method=method_name)
@@ -44,10 +47,19 @@ class JdbProcess(object):
         self.process.sendline("locals")
         self.process.expect(r".*\[.*\] ")
         self.raw_locals_result = self.process.after.decode()
-        print("------------ locals------------------")
-        print(self.raw_locals_result)
-        print("-------------------------------------")
-        print("")
+        
+        # self.process.sendline("print this")
+        # self.process.expect(r".*\[.*\] ")
+        # # self.raw_print_this = self.process.after.decode()
+        # lines = self.process.after.decode()
+        # for line in lines.split("\n"):
+        #     if "this = " in line:
+        #         self.raw_print_this = line
+        
+        # print("------------ locals------------------")
+        # print(self.raw_locals_result)
+        # print("-------------------------------------")
+        # print("")
         
     def parse_raw(self):
         # print("------------- raw ---------------------")
@@ -66,6 +78,7 @@ class JdbProcess(object):
         self.printLog(self.parsed_breakpoint_method)
         
         self.arg_vals = []
+        self.val_map_class = {}
         try :
             isArg = False
             for line in self.raw_locals_result.split("\n"):
@@ -78,8 +91,22 @@ class JdbProcess(object):
                     sp = line.split(" = ")
                     val_name = sp[0]
                     self.arg_vals.append(val_name)
+                    class_name = self.get_class_name(sp[1])
+                    if class_name != None:
+                        self.val_map_class[val_name] = class_name
         except Exception as e :
             self.parsed_breakpoint_method = "[parse error] raw is : " + self.raw_locals_result
+            
+            
+        # 找this类型
+        # org.apache.lucene.codecs.blocktree.BlockTreeTermsWriter$TermsWriter.pushTerm()
+        matchObj = re.match( r'(.*)\.[^.]*', self.parsed_breakpoint_method, re.M|re.I)
+        if matchObj != None:
+            try:          
+                clas = matchObj.group(1)
+                self.this_type = clas
+            except Exception as e :
+                pass
             
         self.printLog("---------- args name ----------------------")
         self.printLog(self.arg_vals)
@@ -87,11 +114,16 @@ class JdbProcess(object):
     @func_set_timeout(5)   
     def check_vals(self):
         self.tainted_vals = []
+        self.taint_types = []
         for val in self.arg_vals:
             if self.check_val_recurse(val, self.check_field_limit):
-                self.tainted_vals.append(val)               
+                self.tainted_vals.append(val)        
+                if val in self.val_map_class.keys():
+                    self.taint_types.append(self.val_map_class[val])
         if self.check_val_recurse("this", self.check_field_limit):
                 self.tainted_vals.append("[this]")
+                if self.this_type != None:
+                    self.taint_types.append(self.this_type)
         self.printLog("---------- tainted args ----------------------")
         self.printLog(self.tainted_vals)
                 
@@ -139,6 +171,14 @@ class JdbProcess(object):
             self.break_points.remove(self.extract_breakpoint_method)
             self.printLog("clear this breakpoint after hit")
             print("[clear] " + "clear {method}".format(method=self.extract_breakpoint_method))
+            
+        file = open(self.filepath2, "a")
+        for s in self.taint_types:
+            if not s in self.all_tainted_type:
+                file.write(s + "\n")
+            self.all_tainted_type.append(s)
+        
+        file.close()
         
     def get_extract_method_breakpoint(self):
         """
@@ -174,6 +214,17 @@ class JdbProcess(object):
         file = open(self.filepath, "a")
         file.write(s + "\n")
         file.close()
+        
+    def get_class_name(self, s):
+        # eg. instance of org.apache.lucene.store.BufferedChecksumIndexInput(id=15182)
+        matchObj = re.match( r'.*instance of (.*)\(', s, re.M|re.I)
+        if matchObj != None:
+            try:          
+                clas = matchObj.group(1)
+                return clas
+            except Exception as e :
+                return None
+        return None
         
 if __name__=='__main__':
     pexpect.spawn("ls", timeout=600)

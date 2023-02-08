@@ -125,7 +125,7 @@ class MyProcessor(object):
                 breakpoints.append(dic)
         if len(breakpoints) > 100:
             print("[warning] too many breakpoints maybe puzzling, auto split into size 100, only use 100 breakpoints")
-            breakpoints = breakpoints[100:200]
+            breakpoints = breakpoints[0:100]
         for dic in breakpoints:
             jdbclient.add_breakpoint(class_name=dic['class'], method_name=dic['method'])
                 
