@@ -147,15 +147,20 @@ class JdbProcess(object):
             self.process.expect(r".*\[.*\] ")
             # print(self.process.after.decode())
             out = self.process.after.decode()
-            parse = False
+            parse_fields = False
             for line in out.split("\n"):
                 # eg. 这样的情况 scrollId = "SftVeryNiceSftVeryNice"
                 for tag in self.taint_tags:
                     if tag in line:
-                        return True, {val, tag}
+                        if parse_fields:
+                            sp = line.split(": ")
+                            field = sp[0].strip()
+                            now_field = val + "." + field
+                        else:
+                            now_field = val
+                        return True, [now_field, tag]
                 
                 # field包裹在花括号里
-                parse_fields = False
                 if "= {" in line:
                     parse_fields = True
                     continue
@@ -165,7 +170,7 @@ class JdbProcess(object):
                 if(parse_fields):
                     if limit > 0:
                         sp = line.split(": ")
-                        field = sp[0]
+                        field = sp[0].strip()
                         ret = self.check_val_recurse(val + "." + field, limit - 1)
                         taint = ret[0]
                         taint_field = ret[1]

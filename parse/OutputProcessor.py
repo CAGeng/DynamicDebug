@@ -126,7 +126,7 @@ class MyProcessor(object):
                 breakpoints.append(dic)
         if len(breakpoints) > 500:
             print("[warning] too many breakpoints maybe puzzling, auto split into size 100, only use 100 breakpoints")
-            breakpoints = breakpoints[3500:]
+            breakpoints = breakpoints[0:500]
         print("[total breakpoints] " + str(len(breakpoints)))
         for dic in breakpoints:
             try:
