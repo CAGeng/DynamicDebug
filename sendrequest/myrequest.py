@@ -9,7 +9,7 @@ def send():
     func_con = 0
     for f in es.ES_funcs:
         func_con += 1
-        # print("func: " + str(func_con))
+        print("func: " + str(func_con))
         try:
             f()
         except Exception as e:

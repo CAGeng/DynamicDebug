@@ -15,15 +15,16 @@ class JdbProcess(object):
         self.filepath2 = "./output/tainted_class_type.txt"
         open(self.filepath2, "w")
         self.break_points = []
-        self.check_field_limit = 0
+        self.check_field_limit = 2
         self.all_tainted_type = []
         
+    @func_set_timeout(3)
     def add_breakpoint(self, class_name, method_name):
         s = "{class_name}.{entry_method}".format(class_name=class_name, entry_method=method_name)
         if s in self.break_points:
             return
         self.process.sendline("stop in " + s)
-        print("add breakpoint: " + s)
+        print("add breakpoint: " + s + "  size: " + str(len(self.break_points)))
         self.break_points.append(s)
         
         # output may be out of place , we do not try to parse it
@@ -115,17 +116,30 @@ class JdbProcess(object):
     def check_vals(self):
         self.tainted_vals = []
         self.taint_types = []
+        self.tainted_vals_detail = []
         for val in self.arg_vals:
-            if self.check_val_recurse(val, self.check_field_limit):
-                self.tainted_vals.append(val)        
+            ret = self.check_val_recurse(val, self.check_field_limit)
+            taint = ret[0]
+            taint_field = ret[1]
+            if taint:
+                self.tainted_vals.append(val) 
+                self.tainted_vals_detail.append(val + "  " + str(taint_field))        
                 if val in self.val_map_class.keys():
                     self.taint_types.append(self.val_map_class[val])
-        if self.check_val_recurse("this", self.check_field_limit):
-                self.tainted_vals.append("[this]")
-                if self.this_type != None:
-                    self.taint_types.append(self.this_type)
+                else:
+                    self.taint_types.append("[basic type] " + val)
+        # this
+        ret = self.check_val_recurse("this", self.check_field_limit)
+        taint = ret[0]
+        taint_field = ret[1]
+        if taint:
+            self.tainted_vals.append("[this]")
+            self.tainted_vals_detail.append("[this] " + str(taint_field))
+            if self.this_type != None:
+                self.taint_types.append(self.this_type)
         self.printLog("---------- tainted args ----------------------")
         self.printLog(self.tainted_vals)
+        self.printLog(self.tainted_vals_detail)
                 
     def check_val_recurse(self, val, limit):
         try:
@@ -135,23 +149,29 @@ class JdbProcess(object):
             out = self.process.after.decode()
             parse = False
             for line in out.split("\n"):
+                # eg. 这样的情况 scrollId = "SftVeryNiceSftVeryNice"
+                for tag in self.taint_tags:
+                    if tag in line:
+                        return True, {val, tag}
+                
+                # field包裹在花括号里
+                parse_fields = False
                 if "= {" in line:
-                    parse = True
+                    parse_fields = True
                     continue
                 if "}" in line:
-                    parse = False
+                    parse_fields = False
                     break
-                if(parse):
-                    for tag in self.taint_tags:
-                        if tag in line:
-                            return True
+                if(parse_fields):
                     if limit > 0:
                         sp = line.split(": ")
                         field = sp[0]
-                        taint = self.check_val_recurse(val + "." + field, limit - 1)
+                        ret = self.check_val_recurse(val + "." + field, limit - 1)
+                        taint = ret[0]
+                        taint_field = ret[1]
                         if taint:
-                            return True
-            return False
+                            return True, taint_field
+            return False, None
                              
         except Exception as e :
             self.printLog("!! check vals fail for value " + val)
