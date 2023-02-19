@@ -28,12 +28,12 @@ def debug():
     
     debug_lock.acquire()
     output_processor = OutputProcessor.MyProcessor("")
-    output_processor.parse_breakpoint_from_file_taint_alloc_size("/mnt/f/code/webdetect/output/2-7/run/taint-alloc-size.txt")
+    # output_processor.parse_breakpoint_from_file_taint_alloc_size("/mnt/f/code/webdetect/output/2-7/2/es6-8-23/taint-alloc-size.txt")
     # output_processor.parse_breakpoint_from_file_system_out("/mnt/f/code/webdetect/output/out13.txt")
     # output_processor.parse_breakpoint_from_linger_extend("/mnt/f/code/webdetect/output/ES-output/output-8.4.2/longlifeExtend.txt")
     # output_processor.parse_breakpoint_from_file_system_out("/mnt/f/code/webdetect/output/tomcat-output/out-tomcat-raw.txt")
     # output_processor.parse_breakpoint_from_RCE_output("/mnt/f/web module/dubbo-bfei/Dubbo3.1.1.txt")
-    # output_processor.parse_breakpoint_from_simple_list("/mnt/f/code/webdetect/output/1-31/es-test-1/debug/exp-readstring.txt")
+    output_processor.parse_breakpoint_from_simple_list("/mnt/f/code/webdetect/output/2-7/3/out.txt")
     output_processor.add_breakpoints(client)
     debug_lock.release()
     begin = True

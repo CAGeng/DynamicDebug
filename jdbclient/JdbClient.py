@@ -9,7 +9,7 @@ class JdbProcess(object):
     def __init__(self, ip, port):
         self.process = pexpect.spawn("jdb -connect com.sun.jdi.SocketAttach:hostname={ip},port={port}".format(port=port, ip=ip), timeout=600)
         self.port = port
-        self.taint_tags = ["SftVeryNiceSftVeryNice", "sft_index", "_search/scroll", "383838383838"]
+        self.taint_tags = ["SftVeryNiceSftVeryNice", "sft_index", "_search/scroll", "383838383838", "sft_type"]
         self.file = open("./output/jdbout.txt", "w")
         self.filepath = "./output/jdbout.txt"
         self.filepath2 = "./output/tainted_class_type.txt"

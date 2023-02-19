@@ -1,9 +1,11 @@
 import requests
 import json
+from elasticsearch import Elasticsearch
 
 ES_funcs = []
 
 address = "10.176.36.27:9002"
+es = Elasticsearch(["https://"+address])
 
 def f():
     url="http://{address}/sft_index".format(address=address)
@@ -35,6 +37,7 @@ ES_funcs.append(f)
 # 5
 def f():
     url="http://{address}/sft_index/_doc/SftVeryNiceSftVeryNice".format(address=address)
+    url="http://{address}/sft_index/_doc/".format(address=address)
     body={
         "title" : "SftVeryNiceSftVeryNice",
         "name" : "SftVeryNiceSftVeryNice",
@@ -189,10 +192,65 @@ def f():
     # print(response.text) 
 ES_funcs.append(f)
 
+# 19
+def f():
+    url="http://{address}/_bulk".format(address=address)
+    data = """
+{ "index" : { "_index" : "sft_index2", "_type" : "sft_type1", "_id" : "SftVeryNiceSftVeryNice" } }
+{ "field1" : "SftVeryNiceSftVeryNice1" }
+{ "delete" : { "_index" : "sft_index2", "_type" : "sft_type1", "_id" : "SftVeryNiceSftVeryNice2" } }
+{ "create" : { "_index" : "sft_index2", "_type" : "sft_type1", "_id" : "SftVeryNiceSftVeryNice3" } }
+{ "field1" : "SftVeryNiceSftVeryNice3" }
+"""
+    headers = {'content-type': "application/json"}
+    response = requests.post(url, data = data, headers = headers) 
+    # print(response.text) 
+    
+    # response = es.bulk(body=bulk_request)
+    # print(response)
+ES_funcs.append(f)
+
+# 20
+def f():
+    url="http://{address}/sft_index2/sft_type1/SftVeryNiceSftVeryNice1".format(address=address)
+    body={
+        "fields": ["field1", "field2"],
+        "offsets": "false",
+        "payloads": "false",
+        "positions": "false",
+        "term_statistics": "true",
+        "field_statistics": "true"
+    }
+    headers = {'content-type': "application/json"}
+    response = requests.get(url, data = json.dumps(body), headers = headers) 
+    # print(response.text) 
+ES_funcs.append(f)
+
+# 21
+def f():
+    index_name = "sft_index" + "abc"
+    type_name = "sft_type" + "abc"
+    url="http://{address}/{index_name}".format(address=address, index_name=index_name)
+    body={
+        "mappings": {
+            type_name: {
+                "properties": {
+                    "title": {
+                        "type": "text"
+                    }
+                }
+        }
+  }
+    }
+    headers = {'content-type': "application/json"}
+    response = requests.put(url, data = json.dumps(body), headers = headers) 
+    # print(response.text) 
+ES_funcs.append(f)
+
 if __name__=='__main__':
     # for i in range(len(ES_funcs)):
     #     print(i + 1)
     #     if i > 5:
     #         continue
     #     ES_funcs[i]()
-    ES_funcs[6]()
+    ES_funcs[20]()

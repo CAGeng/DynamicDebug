@@ -124,9 +124,9 @@ class MyProcessor(object):
             for dic in stack:
                 # jdbclient.add_breakpoint(class_name=dic['class'], method_name=dic['method'])
                 breakpoints.append(dic)
-        if len(breakpoints) > 500:
-            print("[warning] too many breakpoints maybe puzzling, auto split into size 100, only use 100 breakpoints")
-            breakpoints = breakpoints[0:500]
+        if len(breakpoints) > 100:
+            print("[warning] too many breakpoints" + "(" + str(len(breakpoints)) + ")" + " maybe puzzling, auto split into size 100, only use 100 breakpoints")
+            breakpoints = breakpoints[0:100]
         print("[total breakpoints] " + str(len(breakpoints)))
         for dic in breakpoints:
             try:
@@ -148,7 +148,12 @@ class MyProcessor(object):
             jdbclient.add_breakpoint(class_name=dic['class'], method_name=dic['method'])
             
         print("breakpoints from linger-extend: " + str(len(self.breakpoints_set3)))
-        for dic in self.breakpoints_set3:
+        breakpoints = self.breakpoints_set3
+        if len(breakpoints) > 100:
+            print("[warning] too many breakpoints" + "(" + str(len(breakpoints)) + ")" + " maybe puzzling, auto split into size 100, only use 100 breakpoints")
+            breakpoints = breakpoints[100:200]
+        print("[total breakpoints] " + str(len(breakpoints)))
+        for dic in breakpoints:
             jdbclient.add_breakpoint(class_name=dic['class'], method_name=dic['method'])
                 
             
